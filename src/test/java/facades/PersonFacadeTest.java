@@ -1,5 +1,7 @@
 package facades;
 
+import entities.Address;
+import entities.Hobby;
 import entities.Role;
 import utils.EMF_Creator;
 import entities.Person;
@@ -27,6 +29,8 @@ public class PersonFacadeTest {
     private static PersonFacade facade;
     private Person p1, p2, p3;
     private Role r1, r2;
+    private Address a1, a2;
+    private Hobby h1, h2;
 
     public PersonFacadeTest() {
     }
@@ -52,11 +56,29 @@ public class PersonFacadeTest {
             em.getTransaction().begin();
             em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
+            em.createQuery("delete from Address").executeUpdate();
 
             p1 = new Person("kinkymarkmus@hotmail.com", "secretpassword", "13467964", "John", "Illermand");
             p2 = new Person("villads@gmail.com", "secretpassword", "65478931", "Villads", "Markmus");
             p3 = new Person("Mike@litoris.com", "secretpassword", "32132112", "Willy", "Stroker");
-            
+
+            a1 = new Address("Gøgeholmvej 2", "Helsingør", 3000);
+            a2 = new Address("Slingrevænget 55", "Birkerød", 3460);
+
+            h1 = new Hobby("Vandpolo", "Husk at holde vejret");
+            h2 = new Hobby("Full Contact Petanque", "Bring your own equipment (And bandages!)");
+
+            p1.setAddress(a1);
+            p2.setAddress(a2);
+            p3.setAddress(a1);
+
+            p1.addHobby(h1);
+            p2.addHobby(h2);
+            p3.addHobby(h2);
+            p3.addHobby(h1);
+            em.persist(h1);
+            em.persist(h2);
+
             r1 = new Role("user");
             r2 = new Role("admin");
             p1.addRole(r1);
