@@ -2,7 +2,7 @@ package facades;
 
 import entities.Role;
 import utils.EMF_Creator;
-import entities.User;
+import entities.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,21 +20,21 @@ import security.errorhandling.AuthenticationException;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
-public class UserFacadeTest {
+public class PersonFacadeTest {
 
     private static EntityManagerFactory emf;
     //private static FacadeExample facade;
-    private static UserFacade facade;
-    private User u1, u2;
+    private static PersonFacade facade;
+    private Person p1, p2, p3;
     private Role r1, r2;
 
-    public UserFacadeTest() {
+    public PersonFacadeTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactoryForTest();
-        facade = UserFacade.getUserFacade(emf);
+        facade = PersonFacade.getUserFacade(emf);
     }
 
     @AfterAll
@@ -48,22 +48,26 @@ public class UserFacadeTest {
     public void setUp() {
         EntityManager em = emf.createEntityManager();
         try {
+//            Delete existing users and roles to get a "fresh" database
             em.getTransaction().begin();
-            em.createNamedQuery("User.deleteAllRows").executeUpdate();
-            em.createNamedQuery("Role.deleteAllRows").executeUpdate();
+            em.createQuery("delete from Person").executeUpdate();
+            em.createQuery("delete from Role").executeUpdate();
+
+            p1 = new Person("kinkymarkmus@hotmail.com", "secretpassword", "13467964", "John", "Illermand");
+            p2 = new Person("villads@gmail.com", "secretpassword", "65478931", "Villads", "Markmus");
+            p3 = new Person("Mike@litoris.com", "secretpassword", "32132112", "Willy", "Stroker");
+            
             r1 = new Role("user");
             r2 = new Role("admin");
-            u1 = new User("testmand1", "storFedAgurk");
-            u2 = new User("testmand2", "lilleFedTomat");
-
-            u1.addRole(r1);
-            u2.addRole(r2);
-
+            p1.addRole(r1);
+            p2.addRole(r2);
+            p3.addRole(r1);
+            p3.addRole(r2);
             em.persist(r1);
             em.persist(r2);
-            em.persist(u1);
-            em.persist(u2);
-
+            em.persist(p1);
+            em.persist(p2);
+            em.persist(p3);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -77,21 +81,21 @@ public class UserFacadeTest {
 
     @Test
     public void testAFacadeMethod() {
-        assertEquals(2, facade.getUserCount(), "Expects two rows in the database");
+        assertEquals(3, facade.getUserCount(), "Expects three rows in the database");
     }
 
     @Test
     public void testGetVeryfiedUser() throws AuthenticationException {
-        String pass = u1.getUserPass();
+        String pass = p1.getUserPass();
 
-        assertEquals(u1.getUserName(), "testmand1");
-        assertEquals(u1.getUserPass(), pass);
-        assertThat(u1.getUserName(), is(not("pollemand")));
-        assertThat(u1.getUserPass(), is(not("lilleGrimTomat")));
+        assertEquals(p1.getEmail(), "kinkymarkmus@hotmail.com");
+        assertEquals(p1.getUserPass(), pass);
+        assertThat(p1.getEmail(), is(not("pollemand")));
+        assertThat(p1.getUserPass(), is(not("lilleGrimTomat")));
     }
 
     @Test
     public void testGetRoleList() {
-        assertEquals(u1.getRolesAsStrings().get(0), r1.getRoleName());
+        assertEquals(p1.getRolesAsStrings().get(0), r1.getRoleName());
     }
 }

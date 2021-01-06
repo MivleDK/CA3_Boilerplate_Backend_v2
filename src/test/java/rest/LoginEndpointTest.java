@@ -1,6 +1,6 @@
 package rest;
 
-import entities.User;
+import entities.Person;
 import entities.Role;
 
 import io.restassured.RestAssured;
@@ -37,6 +37,8 @@ public class LoginEndpointTest {
         return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, rc);
     }
 
+    Person p1, p2, p3;
+    
     @BeforeAll
     public static void setUpClass() {
         //This method must be called before you request the EntityManagerFactory
@@ -66,25 +68,26 @@ public class LoginEndpointTest {
         try {
             em.getTransaction().begin();
             //Delete existing users and roles to get a "fresh" database
-            em.createQuery("delete from User").executeUpdate();
+            em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
+
+            p1 = new Person("kinkymarkmus@hotmail.com", "secretpassword", "13467964", "John", "Illermand");
+            p2 = new Person("villads@gmail.com", "secretpassword", "65478931", "Villads", "Markmus");
+            p3 = new Person("Mike@litoris.com", "secretpassword", "32132112", "Willy", "Stroker");
 
             Role userRole = new Role("user");
             Role adminRole = new Role("admin");
-            User user = new User("user", "popcorn");
-            user.addRole(userRole);
-            User admin = new User("admin", "popcorn");
-            admin.addRole(adminRole);
-            User both = new User("user_admin", "popcorn");
-            both.addRole(userRole);
-            both.addRole(adminRole);
+            p1.addRole(userRole);
+            p2.addRole(adminRole);
+            p3.addRole(userRole);
+            p3.addRole(adminRole);
             em.persist(userRole);
             em.persist(adminRole);
-            em.persist(user);
-            em.persist(admin);
-            em.persist(both);
-            //System.out.println("Saved test data to database");
+            em.persist(p1);
+            em.persist(p2);
+            em.persist(p3);
             em.getTransaction().commit();
+
         } finally {
             em.close();
         }
@@ -127,7 +130,7 @@ public class LoginEndpointTest {
 
     @Test
     public void testRestForAdmin() {
-        login("admin", "popcorn");
+        login("villads@gmail.com", "secretpassword");
         given()
                 .contentType("application/json")
                 .accept(ContentType.JSON)
@@ -135,24 +138,24 @@ public class LoginEndpointTest {
                 .when()
                 .get("/info/admin").then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to (admin) User: admin"));
+                .body("msg", equalTo("Hello to (admin) User: " + p2.getEmail()));
     }
 
     @Test
     public void testRestForUser() {
-        login("user", "popcorn");
+        login("kinkymarkmus@hotmail.com", "secretpassword");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
                 .when()
                 .get("/info/user").then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to User: user"));
+                .body("msg", equalTo("Hello to User: " + p1.getEmail()));
     }
 
     @Test
     public void testAutorizedUserCannotAccesAdminPage() {
-        login("user", "popcorn");
+        login("kinkymarkmus@hotmail.com", "secretpassword");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
@@ -163,18 +166,18 @@ public class LoginEndpointTest {
 
     @Test
     public void testAutorizedAdminCannotAccesUserPage() {
-        login("admin", "popcorn");
+        login("villads@gmail.com", "secretpassword");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
                 .when()
-                .get("/info/user").then() //Call User endpoint as Admin
+                .get("/info/user").then() //Call Person endpoint as Admin
                 .statusCode(401);
     }
 
     @Test
     public void testRestForMultiRole1() {
-        login("user_admin", "popcorn");
+        login("Mike@litoris.com", "secretpassword");
         given()
                 .contentType("application/json")
                 .accept(ContentType.JSON)
@@ -182,19 +185,19 @@ public class LoginEndpointTest {
                 .when()
                 .get("/info/admin").then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to (admin) User: user_admin"));
+                .body("msg", equalTo("Hello to (admin) User: " + p3.getEmail()));
     }
 
     @Test
     public void testRestForMultiRole2() {
-        login("user_admin", "popcorn");
+        login("Mike@litoris.com", "secretpassword");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
                 .when()
                 .get("/info/user").then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to User: user_admin"));
+                .body("msg", equalTo("Hello to User: " + p3.getEmail()));
     }
 
     @Test

@@ -1,6 +1,6 @@
 package facades;
 
-import entities.User;
+import entities.Person;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import security.errorhandling.AuthenticationException;
@@ -8,12 +8,12 @@ import security.errorhandling.AuthenticationException;
 /**
  * @author lam@cphbusiness.dk
  */
-public class UserFacade {
+public class PersonFacade {
 
     private static EntityManagerFactory emf;
-    private static UserFacade instance;
+    private static PersonFacade instance;
 
-    private UserFacade() {
+    private PersonFacade() {
     }
 
     /**
@@ -21,10 +21,10 @@ public class UserFacade {
      * @param _emf
      * @return the instance of this facade.
      */
-    public static UserFacade getUserFacade(EntityManagerFactory _emf) {
+    public static PersonFacade getUserFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new UserFacade();
+            instance = new PersonFacade();
         }
         return instance;
     }
@@ -32,18 +32,18 @@ public class UserFacade {
     public long getUserCount(){
         EntityManager em = emf.createEntityManager();
         try{
-            long userCount = (long)em.createQuery("SELECT COUNT(u) FROM User u").getSingleResult();
+            long userCount = (long)em.createQuery("SELECT COUNT(u) FROM Person u").getSingleResult();
             return userCount;
         }finally{  
             em.close();
         }
     }
     
-    public User getVeryfiedUser(String username, String password) throws AuthenticationException {
+    public Person getVeryfiedUser(String username, String password) throws AuthenticationException {
         EntityManager em = emf.createEntityManager();
-        User user;
+        Person user;
         try {
-            user = em.find(User.class, username);
+            user = em.find(Person.class, username);
             if (user == null || !user.verifyPassword(password)) {
                 throw new AuthenticationException("Invalid user name or password");
             }
