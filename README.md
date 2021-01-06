@@ -1,4 +1,4 @@
-# CA3 quick start code: Frontend Boilerplate
+# CA3 quick start code: Backend Boilerplate
 
 (Insert travis URL)
 
