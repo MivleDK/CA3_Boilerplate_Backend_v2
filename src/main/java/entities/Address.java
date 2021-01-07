@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,8 +22,8 @@ public class Address implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street")
+    private String street;
 
     @Column(name = "city")
     private String city;
@@ -39,7 +38,7 @@ public class Address implements Serializable {
     }
 
     public Address(String address, String city, int zipCode) {
-        this.address = address;
+        this.street = address;
         this.city = city;
         this.zipCode = zipCode;
     }
@@ -51,12 +50,12 @@ public class Address implements Serializable {
         }
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getCity() {

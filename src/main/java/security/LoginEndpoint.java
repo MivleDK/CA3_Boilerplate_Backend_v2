@@ -32,7 +32,7 @@ public class LoginEndpoint {
 
   public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
   private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-  public static final PersonFacade USER_FACADE = PersonFacade.getUserFacade(EMF);
+  public static final PersonFacade USER_FACADE = PersonFacade.getPersonFacade(EMF);
   
   @POST
   @Consumes(MediaType.APPLICATION_JSON)

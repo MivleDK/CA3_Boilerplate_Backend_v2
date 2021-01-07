@@ -1,7 +1,11 @@
 package rest;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import dto.PersonsDTO;
 import entities.Person;
+import errorhandling.NotFoundException;
+import facades.PersonFacade;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
@@ -12,6 +16,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 import utils.EMF_Creator;
@@ -25,6 +30,9 @@ public class PersonResource {
 
     @Context
     SecurityContext securityContext;
+    
+    private static final PersonFacade FACADE =  PersonFacade.getPersonFacade(EMF);
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -35,12 +43,12 @@ public class PersonResource {
     //Just to verify if the database is setup
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("all")
+    @Path("count")
     public String allUsers() {
 
         EntityManager em = EMF.createEntityManager();
         try {
-            TypedQuery<Person> query = em.createQuery ("select u from Person u",entities.Person.class);
+            TypedQuery<Person> query = em.createQuery ("select u from Person u", entities.Person.class);
             List<Person> users = query.getResultList();
             return "[" + users.size() + "]";
         } finally {
@@ -64,5 +72,22 @@ public class PersonResource {
     public String getFromAdmin() {
         String thisuser = securityContext.getUserPrincipal().getName();
         return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("person/{email}")
+    public String getPersonByEmail(@PathParam("email") String email) throws NotFoundException {
+
+        return GSON.toJson(FACADE.getPersonByEmail(email));
+
+    }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("person/all")
+    public String getAllPersons() throws NotFoundException {
+        PersonsDTO psDTO = FACADE.getAllPersons();
+        return GSON.toJson(psDTO);
     }
 }
