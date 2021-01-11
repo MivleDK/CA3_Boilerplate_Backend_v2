@@ -15,9 +15,8 @@ public class PersonDTO {
     private String street;
     private String city;
     private int zipcode;
-    
-    private List<Hobby> hobbyList = new ArrayList<>();
 
+    private List<String> hobbyList;
 
     public PersonDTO(Person person) {
         this.email = person.getEmail();
@@ -27,6 +26,7 @@ public class PersonDTO {
         this.street = person.getAddress().getStreet();
         this.city = person.getAddress().getCity();
         this.zipcode = person.getAddress().getZipCode();
+        this.hobbyList = person.getHobbiesAsStrings();
     }
 
     public String getEmail() {
@@ -85,12 +85,12 @@ public class PersonDTO {
         this.zipcode = zipcode;
     }
 
-    public List<Hobby> getHobbyList() {
+    public List<String> getHobbyList() {
         return hobbyList;
     }
 
-    public void setHobbyList(List<Hobby> hobbyList) {
+    public void setHobbyList(List<String> hobbyList) {
         this.hobbyList = hobbyList;
-    } 
+    }
 
 }

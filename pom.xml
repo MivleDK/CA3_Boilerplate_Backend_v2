@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>lam</groupId>
-    <artifactId>CA3_Boilerplate_Backend</artifactId>
+    <artifactId>Eksamen_Boilerplate_Backend</artifactId>
     <version>1</version>
     <packaging>war</packaging>
 
-    <name>CA3_Boilerplate_Backend</name>
+    <name>Eksamen_Boilerplate_Backend</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

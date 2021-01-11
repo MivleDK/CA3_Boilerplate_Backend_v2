@@ -93,8 +93,6 @@ public class LoginEndpointTest {
             p2.addHobby(h2);
             p3.addHobby(h2);
             p3.addHobby(h1);
-            em.persist(h1);
-            em.persist(h2);
 
             Role userRole = new Role("user");
             Role adminRole = new Role("admin");
