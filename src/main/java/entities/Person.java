@@ -80,7 +80,7 @@ public class Person implements Serializable {
         this.email = userName;
         this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt(12));
     }
-
+    
     public String getEmail() {
         return email;
     }

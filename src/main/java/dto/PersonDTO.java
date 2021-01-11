@@ -15,6 +15,7 @@ public class PersonDTO {
     private String street;
     private String city;
     private int zipcode;
+    private String password;
 
     private List<String> hobbyList;
 
@@ -27,8 +28,13 @@ public class PersonDTO {
         this.city = person.getAddress().getCity();
         this.zipcode = person.getAddress().getZipCode();
         this.hobbyList = person.getHobbiesAsStrings();
+        this.password = person.getUserPass();
     }
 
+    public String getPassword() {
+        return password;
+    }
+    
     public String getEmail() {
         return email;
     }
