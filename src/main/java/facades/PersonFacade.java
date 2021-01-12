@@ -7,8 +7,11 @@ import entities.Hobby;
 import entities.Person;
 import entities.Role;
 import errorhandling.NotFoundException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import security.errorhandling.AuthenticationException;
 
 public class PersonFacade {
@@ -127,5 +130,72 @@ public class PersonFacade {
             em.close();
         }
         return new PersonDTO(newPerson);
+    }
+
+    public void updatePerson(PersonDTO p) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        Person person = em.find(Person.class, p.getEmail());
+        if (person == null) {
+            throw new NotFoundException("No person found");
+        }
+        person.setFirstName(p.getFirstName());
+        person.setLastName(p.getLastName());
+        person.setPhone(p.getPhone());
+
+        Address a1 = em.find(Address.class, person.getAddress().getId());
+
+        TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
+        List<Address> resultList = addressList.getResultList();
+
+        boolean flag = true;
+
+        for (int i = 0; i < resultList.size(); i++) {
+            if (p.getStreet().equalsIgnoreCase(resultList.get(i).getStreet())
+                    && p.getCity().equalsIgnoreCase(resultList.get(i).getCity())
+                    && p.getZipcode() == resultList.get(i).getZipCode()) {
+                person.setAddress(resultList.get(i));
+                flag = false;
+            }
+        }
+        if (flag) {
+            Address newAddress = new Address(p.getStreet(), p.getCity(), p.getZipcode());
+            person.setAddress(newAddress);
+        }
+
+        try {
+            em.getTransaction().begin();
+            em.merge(person);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+
+//        //DELETE 
+//        for (int i = 0; i < resultList.size(); i++) {
+//            System.out.println();
+//            System.out.println("RESULT LIST ID: " + resultList.get(i).getId() + " PERSON LIST SIZE IS: " + resultList.get(i).getPersonList().size());
+//        }
+//
+//        //Update list of addresses
+//        resultList = em.createQuery("SELECT a FROM Address a", Address.class).getResultList();
+//        
+//        //Clean up addresses in DB
+//        for (int i = 0; i < resultList.size(); i++) {
+//            if (resultList.get(i).getPersonList().isEmpty()) {
+//
+//                Long id = resultList.get(i).getId();
+//                System.out.println(id);
+//
+//                em.getTransaction().begin();
+//
+//                em.remove(em.find(Address.class, id));
+////                TypedQuery<Address> delAddress;
+////                delAddress = em.createQuery("DELETE FROM Address WHERE id LIKE :id", Address.class);
+////                delAddress.setParameter("id", id);
+//                em.getTransaction().commit();
+//                resultList.remove(i);
+//            }
+//        }
+
     }
 }
