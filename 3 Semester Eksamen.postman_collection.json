@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0b5cce98-c872-4d98-9291-63ecca53125b",
+		"_postman_id": "e5e99a72-aced-413c-9b56-a3282e439aeb",
 		"name": "3 Semester Eksamen",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info",
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,7 +20,7 @@
 					"path": [
 						"3_sem_eksamensprojekt",
 						"api",
-						"info"
+						"hobby"
 					]
 				}
 			},
@@ -353,6 +353,230 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "api/info/person (Update)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"villads@gmail.com\",\r\n    \"phone\":\"11111111\",\r\n    \"firstName\":\"Villads\",\r\n    \"lastName\":\"Markmus\",\r\n    \"street\":\"Gnaskestræde 2\",\r\n    \"city\":\"Snekkersten\",\r\n    \"zipcode\":\"3070\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/person/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"info",
+						"person",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/hobby",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"hobby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/hobby/count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"hobby",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/hobby/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"hobby",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/hobby/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"hobby",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/hobby/(Add hobby)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Kan danses i gaderne ved brug af lygtepæle\",\r\n    \"name\": \"Pole dance\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"hobby",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/hobby/update/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"description\": \"Kan danses i gaderne ved brug af lygtepæle og fejekoste\",\r\n    \"name\": \"Pole dance\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/update/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"hobby",
+						"update",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/hobby/delete/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/delete/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"hobby",
+						"delete",
+						"4"
+					]
+				}
+			},
+			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
