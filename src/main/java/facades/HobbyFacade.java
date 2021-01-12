@@ -2,15 +2,11 @@ package facades;
 
 import dto.HobbiesDTO;
 import dto.HobbyDTO;
-import dto.PersonDTO;
-import dto.PersonsDTO;
 import entities.Hobby;
-import entities.Person;
 import errorhandling.MissingInputException;
 import errorhandling.NotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import security.errorhandling.AuthenticationException;
 
 public class HobbyFacade {
 

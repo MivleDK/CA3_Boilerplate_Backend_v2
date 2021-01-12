@@ -198,4 +198,11 @@ public class PersonFacade {
 //        }
 
     }
+    
+    private List<Address> addressList() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
+        List<Address> resultList = addressList.getResultList();
+        return resultList;
+    }
 }
