@@ -43,7 +43,13 @@ public class Person implements Serializable {
     @ManyToMany
     private List<Role> roleList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "personList", cascade = CascadeType.PERSIST)
+
+    @JoinTable(name = "person_hobbies", joinColumns = {
+        @JoinColumn(name = "email", referencedColumnName = "email")}, inverseJoinColumns = {
+        @JoinColumn(name = "id", referencedColumnName = "id")})
+    @ManyToMany(cascade = CascadeType.PERSIST)
+
+    
     private List<Hobby> hobbyList;
 
     @Column(name = "phone", length = 11)
@@ -117,6 +123,15 @@ public class Person implements Serializable {
             this.hobbyList.add(hobby);
             hobby.getPersonList().add(this);
         }
+
+    }
+    
+    public void removeHobby(Hobby hobby) {
+        if(hobby != null){
+            hobbyList.remove(hobby);
+            hobby.getPersonList().remove(this);
+        }
+
     }
 
     public void setHobbyList(List<Hobby> hobbyList) {

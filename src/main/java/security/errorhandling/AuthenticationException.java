@@ -1,9 +1,6 @@
 package security.errorhandling;
 
-/**
- *
- * @author lam@cphbusiness.dk
- */
+
 public class AuthenticationException extends Exception{
 
     public AuthenticationException(String message) {

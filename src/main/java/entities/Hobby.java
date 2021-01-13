@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,9 +28,10 @@ public class Hobby implements Serializable {
 
     @Column(name = "description", length = 255)
     private String description;
+ 
+    @ManyToMany(mappedBy = "hobbyList", cascade = CascadeType.PERSIST)
+    private List<Person> personList;    
 
-    @ManyToMany
-    private List<Person> personList;
     
     public Hobby(String name, String description) {
         this.name = name;
@@ -66,6 +68,13 @@ public class Hobby implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public void addPerson(Person person) {
+        if(person != null){
+            this.personList.add(person);
+            person.getHobbyList().add(this);
+        }
     }
 
     @Override

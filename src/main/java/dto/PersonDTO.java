@@ -15,9 +15,11 @@ public class PersonDTO {
     private String street;
     private String city;
     private int zipcode;
+
     private String password;
 
     private List<String> hobbyList;
+  
 
     public PersonDTO(Person person) {
         this.email = person.getEmail();

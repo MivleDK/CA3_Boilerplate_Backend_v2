@@ -7,7 +7,7 @@ public class NotFoundException extends Exception {
         super(message);
     }
 
-    public NotFoundException() {
-        super("Requested item could not be found");
-    }
+//    public NotFoundException() {
+//        super("Requested item could not be found");
+//    }
 }

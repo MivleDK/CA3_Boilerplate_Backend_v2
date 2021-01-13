@@ -42,7 +42,7 @@ public class AddressFacade {
         EntityManager em = emf.createEntityManager();
 
         Address address = em.find(Address.class, id);
-
+       
         if (address == null) {
             throw new NotFoundException("No address found with the given ID");
         } else {
