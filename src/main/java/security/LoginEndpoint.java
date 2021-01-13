@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import security.errorhandling.AuthenticationException;
-import errorhandling.GenericExceptionMapper;
+import errorhandling.NotFoundExceptionMapper;
 import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
 
@@ -54,7 +54,7 @@ public class LoginEndpoint {
       if (ex instanceof AuthenticationException) {
         throw (AuthenticationException) ex;
       }
-      Logger.getLogger(GenericExceptionMapper.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(NotFoundExceptionMapper.class.getName()).log(Level.SEVERE, null, ex);
     }
     throw new AuthenticationException("Invalid username or password! Please try again");
   }

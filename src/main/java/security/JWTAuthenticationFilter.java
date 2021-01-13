@@ -40,7 +40,7 @@ public class JWTAuthenticationFilter implements ContainerRequestFilter {
 
      String token = request.getHeaderString("x-access-token");//
      if (token == null) {
-       request.abortWith(errorhandling.GenericExceptionMapper.makeErrRes("Not authenticated - do login", 403));
+       request.abortWith(errorhandling.NotFoundExceptionMapper.makeErrRes("Not authenticated - do login", 403));
        return;
      }
      try {
@@ -49,7 +49,7 @@ public class JWTAuthenticationFilter implements ContainerRequestFilter {
        request.setSecurityContext(new JWTSecurityContext(user, request));
      } catch (AuthenticationException | ParseException | JOSEException ex) {
        Logger.getLogger(JWTAuthenticationFilter.class.getName()).log(Level.SEVERE, null, ex);
-       request.abortWith(errorhandling.GenericExceptionMapper.makeErrRes("Token not valid (timed out?)", 403));
+       request.abortWith(errorhandling.NotFoundExceptionMapper.makeErrRes("Token not valid (timed out?)", 403));
      }
    }
  }

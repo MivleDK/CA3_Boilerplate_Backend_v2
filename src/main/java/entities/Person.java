@@ -46,8 +46,8 @@ public class Person implements Serializable {
     @JoinTable(name = "person_hobbies", joinColumns = {
         @JoinColumn(name = "email", referencedColumnName = "email")}, inverseJoinColumns = {
         @JoinColumn(name = "id", referencedColumnName = "id")})
-    @ManyToMany
-    private List<Hobby> hobbyList = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<Hobby> hobbyList;
 
     @Column(name = "phone", length = 11)
     private String phone;
@@ -71,6 +71,7 @@ public class Person implements Serializable {
         this.lastName = lastName;
         this.email = email;
         this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt(12));
+        this.hobbyList = new ArrayList<>();
     }
 
     //TODO Change when password is hashed
@@ -115,7 +116,17 @@ public class Person implements Serializable {
     }
 
     public void addHobby(Hobby hobby) {
-        hobbyList.add(hobby);
+        if(hobby != null){
+            this.hobbyList.add(hobby);
+            hobby.getPersonList().add(this);
+        }
+    }
+    
+    public void removeHobby(Hobby hobby) {
+        if(hobby != null){
+            hobbyList.remove(hobby);
+            hobby.getPersonList().remove(this);
+        }
     }
 
     public void setHobbyList(List<Hobby> hobbyList) {
