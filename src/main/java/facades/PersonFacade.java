@@ -1,5 +1,6 @@
 package facades;
 
+import dto.HobbyDTO;
 import dto.PersonDTO;
 import dto.PersonsDTO;
 import entities.Address;
@@ -142,7 +143,7 @@ public class PersonFacade {
         person.setLastName(p.getLastName());
         person.setPhone(p.getPhone());
 
-        Address a1 = em.find(Address.class, person.getAddress().getId());
+//        Address a1 = em.find(Address.class, person.getAddress().getId());
 
         TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
         List<Address> resultList = addressList.getResultList();
@@ -169,6 +170,7 @@ public class PersonFacade {
         } finally {
             em.close();
         }
+        
 
 //        //DELETE 
 //        for (int i = 0; i < resultList.size(); i++) {
@@ -199,10 +201,67 @@ public class PersonFacade {
 
     }
     
-    private List<Address> addressList() {
+//    private List<Address> addressList() {
+//        EntityManager em = emf.createEntityManager();
+//        TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
+//        List<Address> resultList = addressList.getResultList();
+//        return resultList;
+//    }
+    
+    public PersonDTO deletePerson(String email) throws NotFoundException{
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
-        List<Address> resultList = addressList.getResultList();
-        return resultList;
+        Person person = em.find(Person.class, email);
+        if (person == null) {
+            throw new NotFoundException("Could not delete, provided id does not exist");
+        } else {
+            try {
+                em.getTransaction().begin();
+                em.remove(person);
+                em.getTransaction().commit();
+            } finally {
+                em.close();
+            }
+            return new PersonDTO(person);
+        }
+    }
+    
+    public void addHobbyToPerson(String email, long id) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+                
+        Person person = em.find(Person.class, email);
+        Hobby hobby = em.find(Hobby.class, id);
+        
+        person.addHobby(hobby);
+        
+        if (person == null) {
+            throw new NotFoundException("No person found");
+        }
+        try {
+            em.getTransaction().begin();
+            em.merge(person);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void removeHobbyFromPerson(String email, long id) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+                
+        Person person = em.find(Person.class, email);
+        Hobby hobby = em.find(Hobby.class, id);
+        
+        person.removeHobby(hobby);
+        
+        if (person == null) {
+            throw new NotFoundException("No person found");
+        }
+        try {
+            em.getTransaction().begin();
+            em.merge(person);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 }
