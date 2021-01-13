@@ -1,9 +1,9 @@
-package jokefetcher;
+package utils;
 
 import java.io.IOException;
 import utils.HttpUtils;
 
-public class JokeFetcher {
+public class FetchTester {                  //Testing file to check the return from a fetch url
 
     public static void main(String[] args) throws IOException {
 
