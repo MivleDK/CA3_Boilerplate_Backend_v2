@@ -40,7 +40,6 @@ Consisting of unit and integration tests using:
 **CI/CD pipeline**
 
 - Travis configuration with github hooks - Everytime you push, travis builds and deploys
-
 <br>
 
 # Getting started
@@ -63,7 +62,6 @@ In order to get started with the "Quick start code" you will need a [backend](ht
 10. You can deploy on travis from this point or deploy directly using a WAR with tomcat manager .
 11. Deploy on travis by setting up the environment variables "REMOTE_PW" and "REMOTE_USER" (TomCat credentials).
 12. Done 🍻🎉🍾  
-
 <br>
 
 ## Getting started with the frontend
@@ -74,7 +72,6 @@ In order to get started with the "Quick start code" you will need a [backend](ht
 4. Done 🍻🎉🍾  
    You can tweak as you like or deploy directly on your domain or using surge.
 5. (Extra) to deploy on surge run `surge --project ./build --domain A_DOMAIN_NAME.surge.sh`
-
 <br>
 
 **Thanks to the original boilerplate contributers**
