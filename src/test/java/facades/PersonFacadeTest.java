@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import security.errorhandling.AuthenticationException;
 
@@ -76,8 +77,6 @@ public class PersonFacadeTest {
             p2.addHobby(h2);
             p3.addHobby(h2);
             p3.addHobby(h1);
-            em.persist(h1);
-            em.persist(h2);
 
             r1 = new Role("user");
             r2 = new Role("admin");

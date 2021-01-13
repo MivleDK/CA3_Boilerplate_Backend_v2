@@ -60,8 +60,9 @@ In order to get started with the "Quick start code" you will need a [backend](ht
 7. Run a "Clean & build" to make sure that everyting was setup correctly.
 8. Run the project and verify it's accessible in your browser on localhost.
 9. Run the `SetupTestUsers.java` file to persist test users.
-10. Done 🍻🎉🍾  
-    You can deploy on travis from this point or deploy directly using a WAR with tomcat manager .
+10. You can deploy on travis from this point or deploy directly using a WAR with tomcat manager .
+11. Deploy on travis by setting up the environment variables "REMOTE_PW" and "REMOTE_USER" (TomCat credentials).
+12. Done 🍻🎉🍾  
 
 <br>
 

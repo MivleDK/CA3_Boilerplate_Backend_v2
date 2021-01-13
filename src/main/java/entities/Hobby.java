@@ -28,9 +28,10 @@ public class Hobby implements Serializable {
 
     @Column(name = "description", length = 255)
     private String description;
-
+ 
     @ManyToMany(mappedBy = "hobbyList", cascade = CascadeType.PERSIST)
     private List<Person> personList;    
+
     
     public Hobby(String name, String description) {
         this.name = name;
