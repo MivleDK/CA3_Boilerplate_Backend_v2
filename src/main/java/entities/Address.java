@@ -31,7 +31,7 @@ public class Address implements Serializable {
     @Column(name = "zipCode")
     private int zipCode;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "address")
+    @OneToMany(mappedBy = "address", cascade = CascadeType.PERSIST)
     private List<Person> personList;
 
     public Address() {
