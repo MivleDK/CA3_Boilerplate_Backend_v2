@@ -1,0 +1,705 @@
+{
+	"info": {
+		"_postman_id": "21f24f4f-17f8-474b-b15d-bf355f7e12a4",
+		"name": "3 Semester Eksamen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "api/info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/person/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"person",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5reW1hcmttdXNAaG90bWFpbC5jb20iLCJyb2xlcyI6InVzZXIiLCJleHAiOjE2MTAzNzA0NjAsImlhdCI6MTYxMDM2ODY2MCwiaXNzdWVyIjoiQ0EzLWdydXBwZS04IiwidXNlcm5hbWUiOiJraW5reW1hcmttdXNAaG90bWFpbC5jb20ifQ.a8WtVEq-Ag9fzoPIahtePb0qcrMcbjMkM1Pk3z7iZb4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/admin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWxsYWRzQGdtYWlsLmNvbSIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2MDk5NDMwODksImlhdCI6MTYwOTk0MTI4OSwiaXNzdWVyIjoiQ0EzLWdydXBwZS04IiwidXNlcm5hbWUiOiJ2aWxsYWRzQGdtYWlsLmNvbSJ9.ywDi2MiOeB7ePyQ7P4gulG7pbl6G7oO0KTa8BwLluss",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/addHobby/{email}/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWxsYWRzQGdtYWlsLmNvbSIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2MDk5NDMwODksImlhdCI6MTYwOTk0MTI4OSwiaXNzdWVyIjoiQ0EzLWdydXBwZS04IiwidXNlcm5hbWUiOiJ2aWxsYWRzQGdtYWlsLmNvbSJ9.ywDi2MiOeB7ePyQ7P4gulG7pbl6G7oO0KTa8BwLluss",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/addHobby/kinkymarkmus@hotmail.com/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"addHobby",
+								"kinkymarkmus@hotmail.com",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/removeHobby/{email}/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWxsYWRzQGdtYWlsLmNvbSIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2MDk5NDMwODksImlhdCI6MTYwOTk0MTI4OSwiaXNzdWVyIjoiQ0EzLWdydXBwZS04IiwidXNlcm5hbWUiOiJ2aWxsYWRzQGdtYWlsLmNvbSJ9.ywDi2MiOeB7ePyQ7P4gulG7pbl6G7oO0KTa8BwLluss",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/removeHobby/kinkymarkmus@hotmail.com/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"removeHobby",
+								"kinkymarkmus@hotmail.com",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/person/email",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWxsYWRzQGdtYWlsLmNvbSIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2MDk5NDMwODksImlhdCI6MTYwOTk0MTI4OSwiaXNzdWVyIjoiQ0EzLWdydXBwZS04IiwidXNlcm5hbWUiOiJ2aWxsYWRzQGdtYWlsLmNvbSJ9.ywDi2MiOeB7ePyQ7P4gulG7pbl6G7oO0KTa8BwLluss"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/email/kinkymarkmus@hotmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"email",
+								"kinkymarkmus@hotmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/ (Add user)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"johnjohn@hotmail.com\",\r\n    \"password\":\"hunter2\",\r\n    \"phone\":\"46791364\",\r\n    \"firstName\":\"John\",\r\n    \"lastName\":\"Langhals\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/person (Update)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"villads@gmail.com\",\r\n    \"phone\":\"11111111\",\r\n    \"firstName\":\"Villads\",\r\n    \"lastName\":\"Markmus\",\r\n    \"street\":\"Gnaskestræde 2\",\r\n    \"city\":\"Snekkersten\",\r\n    \"zipcode\":\"3070\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/person/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/info/delete/{email}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/info/delete/kinkymarkmus@hotmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"info",
+								"delete",
+								"kinkymarkmus@hotmail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "api/login/user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"kinkymarkmus@hotmail.com\",\r\n    \"password\":\"secretpassword\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/login/admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"villads@gmail.com\",\r\n    \"password\":\"secretpassword\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hobby",
+			"item": [
+				{
+					"name": "api/hobby",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/hobby/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/hobby/count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/count",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby",
+								"count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/hobby/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/hobby/(Add hobby)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Kan danses i gaderne ved brug af lygtepæle\",\r\n    \"name\": \"Pole dance\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/hobby/update/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"description\": \"Kan danses i gaderne ved brug af lygtepæle og fejekoste\",\r\n    \"name\": \"Pole dance\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/hobby/delete/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/hobby/delete/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"hobby",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Webscraper",
+			"item": [
+				{
+					"name": "api/scrape/sequential",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/scrape/sequential",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"scrape",
+								"sequential"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/scrape/parallel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/scrape/parallel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"3_sem_eksamensprojekt",
+								"api",
+								"scrape",
+								"parallel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api/jokes/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/3_sem_eksamensprojekt/api/jokes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"3_sem_eksamensprojekt",
+						"api",
+						"jokes",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
