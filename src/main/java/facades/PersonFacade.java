@@ -111,9 +111,27 @@ public class PersonFacade {
                 newPerson = new Person(email, userPass, phone, fName, lName);
                 Role userRole = em.find(Role.class, "user");
                 newPerson.addRole(userRole);
-                Address address = new Address("", "", 0);
+
+                TypedQuery<Address> addressList = em.createQuery("SELECT a FROM Address a", Address.class);
+                List<Address> resultList = addressList.getResultList();
+
+                boolean flag = true;
+
+                for (int i = 0; i < resultList.size(); i++) {
+                    if (person.getStreet().equalsIgnoreCase(resultList.get(i).getStreet())
+                            && person.getCity().equalsIgnoreCase(resultList.get(i).getCity())
+                            && person.getZipcode() == resultList.get(i).getZipCode()) {
+                        newPerson.setAddress(resultList.get(i));
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    Address newAddress = new Address(person.getStreet(), person.getCity(), person.getZipcode());
+                    newPerson.setAddress(newAddress);
+                }
+
                 Hobby hobby = new Hobby("None", "none");
-                newPerson.setAddress(address);
+
                 newPerson.addHobby(hobby);
 
                 em.getTransaction().begin();
@@ -144,7 +162,6 @@ public class PersonFacade {
         person.setPhone(p.getPhone());
 
 //        Address a1 = em.find(Address.class, person.getAddress().getId());
-
         TypedQuery<Address> addressList = em.createQuery("SELECT a FROM Address a", Address.class);
         List<Address> resultList = addressList.getResultList();
 
@@ -170,7 +187,6 @@ public class PersonFacade {
         } finally {
             em.close();
         }
-        
 
 //        //DELETE 
 //        for (int i = 0; i < resultList.size(); i++) {
@@ -198,17 +214,15 @@ public class PersonFacade {
 //                resultList.remove(i);
 //            }
 //        }
-
     }
-    
+
 //    private List<Address> addressList() {
 //        EntityManager em = emf.createEntityManager();
 //        TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
 //        List<Address> resultList = addressList.getResultList();
 //        return resultList;
 //    }
-    
-    public PersonDTO deletePerson(String email) throws NotFoundException{
+    public PersonDTO deletePerson(String email) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
         Person person = em.find(Person.class, email);
         if (person == null) {
@@ -224,15 +238,15 @@ public class PersonFacade {
             return new PersonDTO(person);
         }
     }
-    
+
     public void addHobbyToPerson(String email, long id) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
-                
+
         Person person = em.find(Person.class, email);
         Hobby hobby = em.find(Hobby.class, id);
-        
+
         person.addHobby(hobby);
-        
+
         if (person == null) {
             throw new NotFoundException("No person found");
         }
@@ -244,15 +258,15 @@ public class PersonFacade {
             em.close();
         }
     }
-    
+
     public void removeHobbyFromPerson(String email, long id) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
-                
+
         Person person = em.find(Person.class, email);
         Hobby hobby = em.find(Hobby.class, id);
-        
+
         person.removeHobby(hobby);
-        
+
         if (person == null) {
             throw new NotFoundException("No person found");
         }
