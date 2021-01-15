@@ -145,7 +145,7 @@ public class PersonFacade {
 
 //        Address a1 = em.find(Address.class, person.getAddress().getId());
 
-        TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
+        TypedQuery<Address> addressList = em.createQuery("SELECT a FROM Address a", Address.class);
         List<Address> resultList = addressList.getResultList();
 
         boolean flag = true;
